@@ -98,8 +98,8 @@ def prediction_GPT3_5(data, explain = False):
         return None
 
 def prediction(combined_data_argu):
-    credit_data, explain = combined_data_argu
-    response = prediction_GPT3_5(credit_data, explain)
+    application_data, explain = combined_data_argu
+    response = prediction_GPT3_5(application_data, explain)
     return response
 
 def create_auc_chart(scores_dic, label_y_test, title):
