@@ -102,43 +102,6 @@ def prediction(combined_data_argu):
     response = prediction_GPT3_5(application_data, explain)
     return response
 
-def create_auc_chart(scores_dic, label_y_test, title):
-
-    fig = go.Figure()
-    trace_list = []
-    
-    for key in scores_dic:
-        
-        y_pred = scores_dic[key]
-        fpr, tpr, _ = metrics.roc_curve(label_y_test, y_pred)
-        auc = round(metrics.roc_auc_score(label_y_test, y_pred), 4)
-        
- 
-        trace_tmp = go.Scatter(
-            x=fpr,
-            y=tpr,
-            #text=df.index,
-            name=key + ", AUC = " + str(auc),
-            #marker_color='#f5827a',
-            hovertemplate='FPR: %{x:.2%} TPR: %{y:.2%}',
-            showlegend=True
-
-        )
-        trace_list.append(trace_tmp)
- 
-
-    fig.add_traces(trace_list)
-
-    fig.update_layout(dict(
-        title=dict(text=title.upper()),
-        template='plotly_white',
-        title_font_family="Times New Roman",
-        font_family="Courier New",   
-        height=600,   
-        width=960,
-    ))
-    
-    return fig
 
 def compile_prompt(x):
     pattern = r'\[(\d+)-(\d+)\)'
